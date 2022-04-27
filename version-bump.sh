@@ -57,6 +57,7 @@ else
   git add $POMPATH/pom.xml
   echo "$PACKAGEJSONPATH"
   echo ":::::"
+  ls
   echo $PACKAGEJSONPATH
   cd "../$PACKAGEJSONPATH" && npm version "$NEW_VERSION" --no-git-tag-version --allow-same-version
   git add "$PACKAGEJSONPATH/package.json"
