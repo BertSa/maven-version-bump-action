@@ -37,6 +37,7 @@ git config --global user.name "$NAME"
 OLD_VERSION=$("$DIR"/get-version.sh)
 OLD_PACKAGE_VERSION=$(awk -F \" '/"version": ".+"/ { print $4; exit; }' "$PACKAGEJSONPATH/package.json")
 
+echo "$DIR"
 ls "$DIR"
 
 BUMP_MODE="none"
