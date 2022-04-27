@@ -34,7 +34,7 @@ function bump {
 git config --global user.email "$EMAIL"
 git config --global user.name "$NAME"
 
-OLD_VERSION=$("$DIR"/get-version.sh)
+OLD_VERSION=$("$DIR"/get-version-maven.sh)
 OLD_PACKAGE_VERSION=$("$DIR"/get-version-package.sh)
 
 BUMP_MODE="none"
