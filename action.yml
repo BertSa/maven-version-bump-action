@@ -16,6 +16,10 @@ inputs:
     description: 'The relative location of your pom.xml file'
     required: true
     default: '.'
+  package-json-path:
+    description: 'The relative location of your package.json file'
+    required: true
+    default: '.'
   git-email:
     description: 'The email address used to create the version bump commit with.'
     required: true
