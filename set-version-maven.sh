@@ -1,2 +1,1 @@
-cd "$POMPATH" || exit
-mvn -q versions:set -DnewVersion="${NEW_VERSION}"
+cd "$POMPATH" && mvn -q versions:set -DnewVersion="${NEW_VERSION}"

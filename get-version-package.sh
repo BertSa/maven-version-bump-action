@@ -1,1 +1,1 @@
-cd "$PACKAGEJSONPATH" && awk -F \" '/"version": ".+"/ { print $4; exit; }' package.json
+cd "$PACKAGEJSONPATH" && awk -F \" '/"version": ".+"/ { print $4; exit; }' "$PACKAGEJSONPATH/package.json"
