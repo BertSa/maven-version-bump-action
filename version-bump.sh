@@ -69,7 +69,7 @@ else
   else
     (. "$DIR"/set-version-package.sh || echo "No package.json found")
   fi
-  echo "package.json at $PACKAGE_JSON_PATH has been updated"
+  echo "package.json at" $PACKAGE_JSON_PATH "has been updated"
   git add "$PACKAGE_JSON_PATH/package.json"
   git add "$PACKAGE_JSON_PATH/package-lock.json"
 
