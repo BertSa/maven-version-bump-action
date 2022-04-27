@@ -61,13 +61,13 @@ else
 
   echo "package.json at $PACKAGEJSONPATH will be bumped from $OLD_PACKAGE_VERSION to $NEW_VERSION"
   if [ "$OLD_PACKAGE_VERSION" == "$OLD_VERSION" ]; then
-    NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh) || echo "No package.json found"
+    NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh $BUMP_MODE)
 
     if [ "$NEW_PACKAGE_VERSION" != "$NEW_VERSION" ]; then
-     (. "$DIR"/set-version-package.sh || echo "No package.json found")
+     (. "$DIR"/set-version-package.sh)
     fi
   else
-    (. "$DIR"/set-version-package.sh || echo "No package.json found")
+    (. "$DIR"/set-version-package.sh)
   fi
   echo "package.json at" "$PACKAGEJSONPATH" "has been updated"
   git add "$PACKAGEJSONPATH/package.json"
