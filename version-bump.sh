@@ -66,10 +66,10 @@ else
     NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh) || echo "No package.json found"
 
     if [ "$NEW_PACKAGE_VERSION" != "$NEW_VERSION" ]; then
-     ./"$DIR/set-version-package.sh" || echo "No package.json found"
+     ./"$DIR"/set-version-package.sh || echo "No package.json found"
     fi
   else
-    ./"$DIR/set-version-package.sh" || echo "No package.json found"
+    ./"$DIR"/set-version-package.sh || echo "No package.json found"
   fi
   echo "package.json at $PACKAGE_JSON_PATH has been updated"
   git add "$PACKAGE_JSON_PATH/package.json"
