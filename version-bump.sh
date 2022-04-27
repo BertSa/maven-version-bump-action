@@ -56,19 +56,19 @@ else
   echo $BUMP_MODE "version bump detected"
   bump $BUMP_MODE "$OLD_VERSION"
   echo "pom.xml at $POMPATH will be bumped from $OLD_VERSION to $NEW_VERSION"
-  ./"$DIR"/set-version-maven.sh
+  ./"$DIR/set-version-maven.sh"
   echo "pom.xml at $POMPATH has been updated"
   git add "$POMPATH/pom.xml"
 
   echo "package.json at $PACKAGE_JSON_PATH will be bumped from $OLD_PACKAGE_VERSION to $NEW_VERSION"
   if [ "$OLD_PACKAGE_VERSION" == "$OLD_VERSION" ]; then
-    NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh)
+    NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh) || echo "No package.json found"
 
     if [ "$NEW_PACKAGE_VERSION" != "$NEW_VERSION" ]; then
-     ./"$DIR"/set-version-package.sh
+     ./"$DIR/set-version-package.sh" || echo "No package.json found"
     fi
   else
-    ./"$DIR"/set-version-package.sh
+    ./"$DIR/set-version-package.sh" || echo "No package.json found"
   fi
   echo "package.json at $PACKAGE_JSON_PATH has been updated"
   git add "$PACKAGE_JSON_PATH/package.json"
