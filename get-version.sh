@@ -1,1 +1,1 @@
-cd $POMPATH && mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+cd "$POMPATH" && mvn help:evaluate -Dexpression=project.version -q -DforceStdout
