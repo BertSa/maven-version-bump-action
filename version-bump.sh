@@ -50,7 +50,7 @@ if [[ "${BUMP_MODE}" == "none" ]]
 then
   echo "No matching commit tags found."
   echo "pom.xml at  $POMPATH will remain at $OLD_VERSION"
-  echo "package.json at $PACKAGE_JSON_PATH will remain at $OLD_PACKAGE_VERSION"
+  echo "package.json at $PACKAGEJSONPATH will remain at $OLD_PACKAGE_VERSION"
 else
   echo $BUMP_MODE "version bump detected"
   bump $BUMP_MODE "$OLD_VERSION"
@@ -59,7 +59,7 @@ else
   echo "pom.xml at $POMPATH has been updated"
   git add "$POMPATH/pom.xml"
 
-  echo "package.json at $PACKAGE_JSON_PATH will be bumped from $OLD_PACKAGE_VERSION to $NEW_VERSION"
+  echo "package.json at $PACKAGEJSONPATH will be bumped from $OLD_PACKAGE_VERSION to $NEW_VERSION"
   if [ "$OLD_PACKAGE_VERSION" == "$OLD_VERSION" ]; then
     NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh) || echo "No package.json found"
 
@@ -69,9 +69,9 @@ else
   else
     (. "$DIR"/set-version-package.sh || echo "No package.json found")
   fi
-  echo "package.json at" $PACKAGE_JSON_PATH "has been updated"
-  git add "$PACKAGE_JSON_PATH/package.json"
-  git add "$PACKAGE_JSON_PATH/package-lock.json"
+  echo "package.json at" "$PACKAGEJSONPATH" "has been updated"
+  git add "$PACKAGEJSONPATH/package.json"
+  git add "$PACKAGEJSONPATH/package-lock.json"
 
   REPO="https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.git"
   git commit -m "Bump pom.xml from $OLD_VERSION to $NEW_VERSION"
