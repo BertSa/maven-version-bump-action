@@ -35,10 +35,7 @@ git config --global user.email "$EMAIL"
 git config --global user.name "$NAME"
 
 OLD_VERSION=$("$DIR"/get-version.sh)
-OLD_PACKAGE_VERSION=$(awk -F \" '/"version": ".+"/ { print $4; exit; }' "$PACKAGEJSONPATH/package.json")
-
-echo "$DIR"
-ls "$DIR"
+OLD_PACKAGE_VERSION=$("$DIR"/get-version-package.sh)
 
 BUMP_MODE="none"
 if git log -1 | grep -q "#major"; then
@@ -59,7 +56,6 @@ else
   bump $BUMP_MODE "$OLD_VERSION"
   echo "pom.xml at $POMPATH will be bumped from $OLD_VERSION to $NEW_VERSION"
   (. "$DIR"/set-version-maven.sh)
-  ls
   echo "pom.xml at $POMPATH has been updated"
   git add "$POMPATH/pom.xml"
 
@@ -68,10 +64,10 @@ else
     NEW_PACKAGE_VERSION=$("$DIR"/bump-package-version.sh) || echo "No package.json found"
 
     if [ "$NEW_PACKAGE_VERSION" != "$NEW_VERSION" ]; then
-     . "$DIR"/set-version-package.sh || echo "No package.json found"
+     (. "$DIR"/set-version-package.sh || echo "No package.json found")
     fi
   else
-    . "$DIR"/set-version-package.sh || echo "No package.json found"
+    (. "$DIR"/set-version-package.sh || echo "No package.json found")
   fi
   echo "package.json at $PACKAGE_JSON_PATH has been updated"
   git add "$PACKAGE_JSON_PATH/package.json"
