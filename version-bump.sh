@@ -53,7 +53,7 @@ else
   echo $BUMP_MODE "version bump detected"
   bump $BUMP_MODE $OLD_VERSION
   echo "pom.xml at" $POMPATH "will be bumped from" $OLD_VERSION "to" $NEW_VERSION
-  mvn -q versions:set -DnewVersion="${NEW_VERSION}"
+  cd $POMPATH && mvn -q versions:set -DnewVersion="${NEW_VERSION}"
   git add $POMPATH/pom.xml
   echo "$PACKAGEJSONPATH"
   echo ":::::"
