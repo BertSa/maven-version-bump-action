@@ -59,6 +59,8 @@ else
   bump $BUMP_MODE "$OLD_VERSION"
   echo "pom.xml at $POMPATH will be bumped from $OLD_VERSION to $NEW_VERSION"
   . "$DIR"/set-version-maven.sh
+  ls
+  ls /
   echo "pom.xml at $POMPATH has been updated"
   git add "$POMPATH/pom.xml"
 
