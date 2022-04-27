@@ -57,16 +57,14 @@ else
   cd "$POMPATH" || exit
   ls
   mvn -q versions:set -DnewVersion="${NEW_VERSION}"
-  git add $POMPATH/pom.xml
-  echo "$PACKAGEJSONPATH"
+  git add pom.xml
   echo ":::::"
-  echo $PACKAGEJSONPATH
   ls
-  cd "$PACKAGEJSONPATH" || exit
+  cd "../$PACKAGEJSONPATH" || exit
   ls
   npm version "$NEW_VERSION" --no-git-tag-version --allow-same-version
-  git add "$PACKAGEJSONPATH/package.json"
-  git add "$PACKAGEJSONPATH/package-lock.json"
+  git add "/package.json"
+  git add "/package-lock.json"
   REPO="https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.git"
   git commit -m "Bump pom.xml from $OLD_VERSION to $NEW_VERSION"
   git tag $NEW_VERSION
