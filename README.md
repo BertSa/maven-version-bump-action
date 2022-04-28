@@ -1,9 +1,11 @@
-# Maven Version Bump Action
+# Maven & Npm Version Bump Action
 
-A simple GitHub Actions to bump the version of Maven projects.
+This project is a fork of [Maven Version Bump Action](https://github.com/nnichols/maven-version-bump-action).
+
+A simple GitHub Actions to bump the version of Maven & Npm projects.
 
 When triggered, this action will look at the commit message of HEAD~1 and determine if it contains one of `#major`, `#minor`, or `#patch` (in that order of precedence).
-If true, it will use Maven to bump your pom's version.
+If true, it will use Maven to bump your pom's version and it will also use npm to bump your package's version.
 
 For example, a `#minor` update to version `1.3.9` will result in the version changing to `1.4.0`.
 The change will then be committed.
@@ -26,7 +28,7 @@ jobs:
 
     - name: Bump Version
       id: bump
-      uses: nnichols/maven-version-bump-action@v3
+      uses: BertSa/maven-version-bump-action@master
       with:
         github-token: ${{ secrets.github_token }}
 
@@ -40,6 +42,7 @@ jobs:
 * `git-email`: The email address each commit should be associated with. Defaults to a github provided noreply address
 * `git-username`: The GitHub username each commit should be associated with. Defaults to `github-actions[bot]`
 * `pom-path`: The path within your directory the pom.xml you intended to change is located.
+* `package-json-path`: The path within your directory the package.json you intended to change is located.
 
 ## Outputs
 
